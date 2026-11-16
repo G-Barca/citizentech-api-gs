@@ -13,7 +13,6 @@ public final class PontoDto {
     private PontoDto() {
     }
 
-    /** O que o app ENVIA (com validacao). */
     public record Request(
             @NotBlank(message = "Endereco obrigatorio")
             @Size(max = 50, message = "Endereco deve ter no maximo 50 caracteres")

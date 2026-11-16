@@ -18,7 +18,6 @@ public class Operacao {
     private Long id;
     @Column(name = "dt_operacao", nullable = false)
     private LocalDate dataOperacao;
-    /** Minutos desde a meia-noite: 360 = 06:00. */
     @Column(name = "hr_inicio", nullable = false)
     private Integer horaInicio;
     @Column(name = "hr_fim", nullable = false)
