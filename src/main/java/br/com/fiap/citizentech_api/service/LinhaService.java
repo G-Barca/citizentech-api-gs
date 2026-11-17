@@ -90,6 +90,14 @@ public class LinhaService {
         return LinhaDto.PontoResponse.de(linhaPontoRepository.save(linhaPonto));
     }
 
+    @Transactional(readOnly = true)
+    public List<LinhaDto.Response> linhasDoPonto(Long pontoId) {
+        pontoService.obter(pontoId);
+        return repository.buscarPorPonto(pontoId).stream()
+                .map(LinhaDto.Response::de)
+                .toList();
+    }
+
     public Linha obter(Long id) {
         return repository.findById(id).orElseThrow(
                 () -> new RecursoNaoEncontradoException("Linha " + id + " nao encontrada."));

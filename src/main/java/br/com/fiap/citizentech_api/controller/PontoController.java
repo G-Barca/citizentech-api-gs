@@ -60,6 +60,8 @@ public class PontoController {
     private EntityModel<PontoDto.Response> toModel(PontoDto.Response dto) {
         return EntityModel.of(dto,
                 linkTo(methodOn(PontoController.class).buscar(dto.id())).withSelfRel(),
+                linkTo(methodOn(PontoConsultaController.class).linhasDoPonto(dto.id())).withRel("linhas"),
+                linkTo(PontoController.class).slash(dto.id()).slash("chegadas").withRel("chegadas"),
                 linkTo(PontoController.class).withRel("pontos"));
     }
 }

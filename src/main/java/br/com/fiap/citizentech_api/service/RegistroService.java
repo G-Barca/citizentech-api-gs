@@ -68,6 +68,12 @@ public class RegistroService {
         repository.delete(obter(id));
         repository.flush();
     }
+    @Transactional(readOnly = true)
+    public Page<RegistroDto.Response> ultimasChegadas(Long pontoId, Pageable pageable) {
+        pontoService.obter(pontoId);
+        return repository.findByPontoIdOrderByDataChegadaDesc(pontoId, pageable)
+                .map(RegistroDto.Response::de);
+    }
 
     private Registro obter(Long id) {
         return repository.findById(id).orElseThrow(
