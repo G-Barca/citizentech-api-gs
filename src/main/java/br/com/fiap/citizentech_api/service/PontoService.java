@@ -10,6 +10,8 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.Cacheable;
 
 @Service
 public class PontoService {
@@ -20,6 +22,7 @@ public class PontoService {
         this.repository = repository;
     }
 
+    @Cacheable("pontos")
     @Transactional(readOnly = true)
     public Page<PontoDto.Response> listar(String endereco, Pageable pageable) {
         Page<PontoOnibus> pagina = (endereco == null || endereco.isBlank())
@@ -33,6 +36,7 @@ public class PontoService {
         return PontoDto.Response.de(obter(id));
     }
 
+    @CacheEvict(cacheNames = "pontos", allEntries = true)
     @Transactional
     public PontoDto.Response criar(PontoDto.Request req) {
         PontoOnibus ponto = new PontoOnibus();
@@ -40,6 +44,7 @@ public class PontoService {
         return PontoDto.Response.de(repository.save(ponto));
     }
 
+    @CacheEvict(cacheNames = "pontos", allEntries = true)
     @Transactional
     public PontoDto.Response atualizar(Long id, PontoDto.Request req) {
         PontoOnibus ponto = obter(id);
@@ -47,6 +52,7 @@ public class PontoService {
         return PontoDto.Response.de(repository.save(ponto));
     }
 
+    @CacheEvict(cacheNames = "pontos", allEntries = true)
     @Transactional
     public void excluir(Long id) {
         repository.delete(obter(id));

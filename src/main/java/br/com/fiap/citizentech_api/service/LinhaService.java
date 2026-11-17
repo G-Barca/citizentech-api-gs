@@ -12,6 +12,8 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.Cacheable;
 
 import java.util.List;
 
@@ -43,6 +45,7 @@ public class LinhaService {
         return LinhaDto.Response.de(obter(id));
     }
 
+    @CacheEvict(cacheNames = "linhasDoPonto", allEntries = true)
     @Transactional
     public LinhaDto.Response criar(LinhaDto.Request req) {
         Linha linha = new Linha();
@@ -50,6 +53,7 @@ public class LinhaService {
         return LinhaDto.Response.de(repository.save(linha));
     }
 
+    @CacheEvict(cacheNames = "linhasDoPonto", allEntries = true)
     @Transactional
     public LinhaDto.Response atualizar(Long id, LinhaDto.Request req) {
         Linha linha = obter(id);
@@ -57,6 +61,7 @@ public class LinhaService {
         return LinhaDto.Response.de(repository.save(linha));
     }
 
+    @CacheEvict(cacheNames = "linhasDoPonto", allEntries = true)
     @Transactional
     public void excluir(Long id) {
         repository.delete(obter(id));
@@ -71,6 +76,7 @@ public class LinhaService {
                 .toList();
     }
 
+    @CacheEvict(cacheNames = "linhasDoPonto", allEntries = true)
     @Transactional
     public LinhaDto.PontoResponse adicionarPonto(Long linhaId, LinhaDto.PontoRequest req) {
         Linha linha = obter(linhaId);
@@ -90,6 +96,7 @@ public class LinhaService {
         return LinhaDto.PontoResponse.de(linhaPontoRepository.save(linhaPonto));
     }
 
+    @Cacheable("linhasDoPonto")
     @Transactional(readOnly = true)
     public List<LinhaDto.Response> linhasDoPonto(Long pontoId) {
         pontoService.obter(pontoId);
