@@ -1,6 +1,5 @@
 package br.com.fiap.citizentech_api.controller;
 
-
 import br.com.fiap.citizentech_api.dto.LinhaDto;
 import br.com.fiap.citizentech_api.service.LinhaService;
 import io.swagger.v3.oas.annotations.tags.Tag;

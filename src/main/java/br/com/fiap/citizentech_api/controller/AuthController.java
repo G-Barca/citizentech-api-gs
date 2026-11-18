@@ -1,5 +1,6 @@
 package br.com.fiap.citizentech_api.controller;
 
+
 import br.com.fiap.citizentech_api.dto.AuthDto;
 import br.com.fiap.citizentech_api.exception.RegraNegocioException;
 import br.com.fiap.citizentech_api.model.Papel;
@@ -18,6 +19,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
 
 @RestController
 @RequestMapping("/auth")

@@ -1,6 +1,5 @@
 package br.com.fiap.citizentech_api.controller;
 
-
 import br.com.fiap.citizentech_api.dto.PontoDto;
 import br.com.fiap.citizentech_api.service.PontoService;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -20,6 +19,8 @@ import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
 @RequestMapping("/api/pontos")
 @Tag(name = "Pontos de onibus")
 public class PontoController {
+
+
 
     private final PontoService service;
 
