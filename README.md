@@ -1,4 +1,4 @@
-# API de pontos de onibus - Global solution
+# API de pontos de onibus - InTransporte
 
 ## Integrantes
 
