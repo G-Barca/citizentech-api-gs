@@ -36,7 +36,7 @@ public class JwtAuthFilter extends OncePerRequestFilter {
                         List.of(new SimpleGrantedAuthority("ROLE_" + papel)));
                 SecurityContextHolder.getContext().setAuthentication(autenticacao);
             } catch (JwtException | IllegalArgumentException e) {
-                SecurityContextHolder.clearContext(); // token invalido ou vencido: segue sem autenticar
+                SecurityContextHolder.clearContext(); // token invalido ou vencido: segue sem autenticr
             }
         }
         chain.doFilter(request, response);

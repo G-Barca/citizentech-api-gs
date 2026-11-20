@@ -56,7 +56,7 @@ public class PontoService {
     @Transactional
     public void excluir(Long id) {
         repository.delete(obter(id));
-        repository.flush(); // forca o DELETE agora, para um erro de FK aparecer aqui
+        repository.flush(); // forca o DELETE para um erro de FK aparecer aqui
     }
 
     public PontoOnibus obter(Long id) {
